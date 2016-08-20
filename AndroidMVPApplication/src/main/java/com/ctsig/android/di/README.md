@@ -1,0 +1,2 @@
+为了便于维护，每一个功能模块创建一个Component和Module
+如account模块创建AccountComponent和AccountModule

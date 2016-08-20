@@ -1,0 +1,6 @@
+为了便于维护，请按照下列要求操作
+
+1、Base类放在base包下
+2、每一个功能模块在Module下创建一个包
+如account模块创建account
+3、自定义组件放在widget下

@@ -51,7 +51,7 @@ android {
             // DEBUG发布使用的变量
             debuggable true
             buildConfigField 'boolean', 'TEST', 'true'
-            buildConfigField 'String', 'API_URL', '"http://www.shen.com/test/api"'
+            buildConfigField 'String', 'API_URL', '"http://op.juhe.cn/"'
         }
 
         release {
@@ -68,7 +68,7 @@ android {
             // 正式发布使用的变量
             debuggable false
             buildConfigField 'boolean', 'TEST', 'false'
-            buildConfigField 'String', 'API_URL', '"http://www.shen.com/api"'
+            buildConfigField 'String', 'API_URL', '"http://op.juhe.cn/"'
 
             // 使生成的安装包名字变成rootprojectname + versionName + versionCode
             applicationVariants.all { variant ->
@@ -131,6 +131,10 @@ dependencies {
     // RxAndroid  https://github.com/ReactiveX/RxAndroid
     compile 'io.reactivex:rxjava:1.1.9'
     compile 'io.reactivex:rxandroid:1.2.1'
+    // Rx Life Cycle  https://github.com/trello/RxLifecycle
+    compile 'com.trello:rxlifecycle:0.6.1'
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+//    compile 'io.vokal.lint:rxlifecycle:1.0.3'
 
     // 找出内存泄漏  https://github.com/square/leakcanary
     debugCompile "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}"
@@ -144,9 +148,9 @@ dependencies {
     //dagger2  https://github.com/google/dagger
     compile "com.google.dagger:dagger:${daggerVersion}"
     apt "com.google.dagger:dagger-compiler:${daggerVersion}"
-    // compile 'org.glassfish:javax.annotation:10.0-b28'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
     // annotation, 提供java注释解析的功能
-    provided 'javax.annotation:jsr250-api:1.0'
+    // provided 'javax.annotation:jsr250-api:1.0'
 
     // Once you complete the set-up instructions below, just start your app
     // and point your laptop browser to chrome://inspect.
@@ -156,7 +160,9 @@ dependencies {
 
     // Gson
     compile 'com.google.code.gson:gson:2.5'
-    // logger https://github.com/orhanobut/logger
+    // logger  https://github.com/orhanobut/logger
     compile 'com.orhanobut:logger:1.15'
-
+    // glide  https://github.com/bumptech/glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 }
