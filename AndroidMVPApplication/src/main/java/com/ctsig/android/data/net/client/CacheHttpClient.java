@@ -3,7 +3,7 @@ package com.ctsig.android.data.net.client;
 import android.app.Application;
 
 import com.ctsig.android.data.net.client.core.BaseOkHttpClient;
-import com.ctsig.android.utils.NetworkUtils;
+import com.ctsig.android.common.utils.NetworkUtils;
 
 import java.io.File;
 import java.io.IOException;

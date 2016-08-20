@@ -12,7 +12,7 @@ android {
         // 应用包名
         applicationId "com.ctsig.android"
         // 最小支持的SDk版本
-        minSdkVersion 14
+        minSdkVersion 15
         // 目标SDK版本
         targetSdkVersion 24
         // 版本号 versionCode = x * 10000 + y * 100 + z 的格式命名
@@ -52,6 +52,7 @@ android {
             debuggable true
             buildConfigField 'boolean', 'TEST', 'true'
             buildConfigField 'String', 'API_URL', '"http://op.juhe.cn/"'
+            buildConfigField 'String', 'GITHUB_API_URL', '"https://api.github.com/"'
         }
 
         release {
@@ -69,6 +70,7 @@ android {
             debuggable false
             buildConfigField 'boolean', 'TEST', 'false'
             buildConfigField 'String', 'API_URL', '"http://op.juhe.cn/"'
+            buildConfigField 'String', 'GITHUB_API_URL', '"https://api.github.com/"'
 
             // 使生成的安装包名字变成rootprojectname + versionName + versionCode
             applicationVariants.all { variant ->
@@ -155,14 +157,20 @@ dependencies {
     // Once you complete the set-up instructions below, just start your app
     // and point your laptop browser to chrome://inspect.
     // Click the "Inspect" button to begin.
+    // https://github.com/facebook/stetho
     compile "com.facebook.stetho:stetho:${stethoVersion}"
     compile "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+
+    // glide  https://github.com/bumptech/glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
 
     // Gson
     compile 'com.google.code.gson:gson:2.5'
     // logger  https://github.com/orhanobut/logger
     compile 'com.orhanobut:logger:1.15'
-    // glide  https://github.com/bumptech/glide
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+    // loading https://github.com/d-max/spots-dialog
+    compile 'com.github.d-max:spots-dialog:0.4@aar'
 }
