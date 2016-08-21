@@ -3,6 +3,7 @@ package com.ctsig.android.ui.module.account.presenter;
 import android.os.Bundle;
 
 import com.ctsig.android.base.BasePresenter;
+import com.ctsig.android.common.utils.LogUtils;
 import com.ctsig.android.data.api.AccountApi;
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.transformer.SchedulerTransformer;
@@ -26,11 +27,15 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     private static final int REQUEST_ID = 1;
     private LoginActivity mContext;
 
-
-    private AccountApi mAccountApi;
+    @Inject
+    AccountApi mAccountApi;
 
     private String mUsername ;
     private String mPassword ;
+
+    public LoginPresenter(){
+        LogUtils.d("LoginPresenter()");
+    }
 
     @Override
     protected void onTakeView(LoginActivity activity) {
@@ -38,10 +43,10 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         mContext = activity;
     }
 
-    @Inject
-    public void setApi(AccountApi api){
-        this.mAccountApi = api ;
-    }
+//    @Inject
+//    public void setApi(AccountApi api){
+//        this.mAccountApi = api ;
+//    }
 
     @Override
     protected void onCreate(Bundle savedState) {

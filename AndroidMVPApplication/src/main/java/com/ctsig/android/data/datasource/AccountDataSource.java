@@ -3,6 +3,7 @@ package com.ctsig.android.data.datasource;
 import android.app.Application;
 
 import com.ctsig.android.common.config.GithubConfig;
+import com.ctsig.android.common.utils.LogUtils;
 import com.ctsig.android.data.api.AccountApi;
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.net.client.GithubAuthRetrofit;
@@ -25,13 +26,22 @@ import rx.functions.Func1;
  */
 public class AccountDataSource implements AccountApi {
 
+    /**
+     * 1、构造方法注入：在类的构造方法前面注释@Inject
+     * 2、成员变量注入：在类的成员变量（非私有）前面注释@Inject
+     * 3、函数方法注入：在函数前面注释@Inject
+     */
     @Inject
     GithubAuthRetrofit mRetrofit;
+
     @Inject
     Application mContext;
+
     @Inject
     public AccountDataSource() {
+        LogUtils.d("AccountDataSource()");
     }
+
     @Override
     public Observable<User> login(String username, String password) {
         mRetrofit.setAuthInfo(username, password);

@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.Window;
 
 import com.ctsig.android.app.App;
+import com.ctsig.android.di.component.ActivityComponent;
 import com.ctsig.android.di.component.ApplicationComponent;
+import com.ctsig.android.di.component.DaggerActivityComponent;
+import com.ctsig.android.di.module.ActivityModule;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
@@ -65,6 +68,7 @@ public abstract class BaseActivity <P extends Presenter> extends NucleusAppCompa
             bundle = new Bundle();
         }
         getBundleExtras(bundle);
+
     }
 
     @Override
@@ -80,6 +84,17 @@ public abstract class BaseActivity <P extends Presenter> extends NucleusAppCompa
 
     protected ApplicationComponent getAppComponent() {
         return ((App) getApplication()).getComponent();
+    }
+
+    private ActivityComponent mActivityComponent;
+    public ActivityComponent getActivityComponent() {
+        if (mActivityComponent == null) {
+            mActivityComponent = DaggerActivityComponent.builder()
+                    .activityModule(new ActivityModule(this))
+                    .applicationComponent(App.get(this).getComponent())
+                    .build();
+        }
+        return mActivityComponent;
     }
 
 //    protected ApiComponent getApiComponent() {

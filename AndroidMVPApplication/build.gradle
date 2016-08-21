@@ -82,8 +82,12 @@ android {
             }
         }
     }
+    //支持lint warning 检查机制
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 
-    // 注释冲突
+    //为什么加入这个呢？防止冲突，比如我同时用了dagger-compiler就会报错，说下面这个`Processor`重复了
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }

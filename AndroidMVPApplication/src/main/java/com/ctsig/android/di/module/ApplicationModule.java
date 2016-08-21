@@ -3,7 +3,6 @@ package com.ctsig.android.di.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.ctsig.android.app.App;
 import com.ctsig.android.di.qualifier.ForApplication;
 
 import javax.inject.Singleton;
@@ -20,9 +19,9 @@ import dagger.Provides;
  */
 @Module
 public class ApplicationModule {
-    private final App app;
+    private final Application app;
 
-    public ApplicationModule(App app) {
+    public ApplicationModule(Application app) {
         this.app = app;
     }
 
@@ -37,7 +36,7 @@ public class ApplicationModule {
     @Provides
     @Singleton
     public Context provideAppContext() {
-        return app.getApplicationContext();
+        return app;
     }
 
 }

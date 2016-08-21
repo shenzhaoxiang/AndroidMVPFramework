@@ -2,8 +2,9 @@ package com.ctsig.android.di.component;
 
 import com.ctsig.android.di.module.AccountModule;
 import com.ctsig.android.di.module.ActivityModule;
-import com.ctsig.android.di.scope.PerActivity;
 import com.ctsig.android.ui.module.account.activity.LoginActivity;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
 
@@ -14,7 +15,7 @@ import dagger.Component;
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-20 19:33
  */
-@PerActivity
+@Singleton
 @Component(
         dependencies = ApplicationComponent.class,
         modules = {ActivityModule.class, AccountModule.class})

@@ -51,7 +51,7 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
 
     @Override
     public void initViewsAndEvents(View view) {
-
+        getComponent().inject(this);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
 //            @Override
 //            public LoginPresenter createPresenter() {
 //                LoginPresenter presenter = superFactory.createPresenter();
-////                getApiComponent().inject(presenter);
+//                getComponent().inject(presenter);
 //                return presenter;
 //            }
 //        });

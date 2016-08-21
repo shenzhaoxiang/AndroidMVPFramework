@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 
 import com.ctsig.android.BuildConfig;
+import com.ctsig.android.common.utils.LogUtils;
 import com.ctsig.android.data.net.client.core.ApiEndpoint;
 import com.ctsig.android.data.net.client.core.BaseOkHttpClient;
 import com.ctsig.android.data.net.client.core.BaseRetrofit;
@@ -29,6 +30,7 @@ public class GithubAuthRetrofit  extends BaseRetrofit {
     private String password;
     @Inject
     public GithubAuthRetrofit() {
+        LogUtils.d("GithubAuthRetrofit()");
     }
     public void setAuthInfo(String username, String password) {
         this.username = username;

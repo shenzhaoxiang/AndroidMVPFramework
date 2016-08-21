@@ -1,5 +1,6 @@
 package com.ctsig.android.di.component;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.ctsig.android.di.module.ApplicationModule;
@@ -22,5 +23,8 @@ public interface ApplicationComponent {
     @ForApplication
     Context context();
 
-    //Application application();
+//    @ForApplication
+//    App application();
+
+    void inject(Application application) ;
 }
