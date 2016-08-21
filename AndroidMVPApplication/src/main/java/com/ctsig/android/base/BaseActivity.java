@@ -10,11 +10,8 @@ import android.view.View;
 import android.view.Window;
 
 import com.ctsig.android.app.App;
-import com.ctsig.android.di.component.ApiComponent;
 import com.ctsig.android.di.component.AppComponent;
-import com.ctsig.android.di.component.DaggerApiComponent;
 import com.ctsig.android.di.module.ActivityModule;
-import com.ctsig.android.di.module.ApiModule;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
@@ -88,14 +85,6 @@ public abstract class BaseActivity <P extends Presenter> extends NucleusAppCompa
         return ((App) getApplication()).getAppComponent();
     }
 
-    protected ApiComponent getApiComponent() {
-//        return ((App) getApplication()).getApiComponent();
-        return DaggerApiComponent.builder()
-                .appComponent(getAppComponent())
-                .activityModule(getActivityModule())
-                .apiModule(new ApiModule())
-                .build();
-    }
 
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);

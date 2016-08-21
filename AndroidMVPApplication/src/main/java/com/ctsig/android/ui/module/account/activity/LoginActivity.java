@@ -12,6 +12,10 @@ import android.widget.ProgressBar;
 
 import com.ctsig.android.R;
 import com.ctsig.android.common.utils.InputMethodUtils;
+import com.ctsig.android.di.HasComponent;
+import com.ctsig.android.di.component.AccountComponent;
+import com.ctsig.android.di.component.DaggerAccountComponent;
+import com.ctsig.android.di.module.AccountModule;
 import com.ctsig.android.ui.base.BaseLoadingActivity;
 import com.ctsig.android.ui.module.account.presenter.LoginPresenter;
 import com.ctsig.android.ui.module.account.view.LoginView;
@@ -22,7 +26,7 @@ import nucleus.factory.PresenterFactory;
 import nucleus.factory.RequiresPresenter;
 
 @RequiresPresenter(LoginPresenter.class)
-public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implements LoginView {
+public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implements LoginView ,HasComponent<AccountComponent> {
 
 
     @BindView(R.id.login_progress)
@@ -62,7 +66,7 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
             @Override
             public LoginPresenter createPresenter() {
                 LoginPresenter presenter = superFactory.createPresenter();
-                getApiComponent().inject(presenter);
+                getComponent().inject(presenter);
                 return presenter;
             }
         });
@@ -92,6 +96,15 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
 
     public static void launch(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
+    }
+
+    @Override
+    public AccountComponent getComponent() {
+        return DaggerAccountComponent.builder()
+                .appComponent(getAppComponent())
+                .activityModule(getActivityModule())
+                .accountModule(new AccountModule())
+                .build();
     }
 }
 

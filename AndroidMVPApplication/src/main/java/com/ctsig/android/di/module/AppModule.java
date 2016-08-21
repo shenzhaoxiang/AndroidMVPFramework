@@ -13,7 +13,7 @@ import dagger.Provides;
 
 /**
  * @version V1.0
- * @des
+ * @des @Module: Modules类里面的方法专门提供依赖
  * @author: shen
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-21 10:21

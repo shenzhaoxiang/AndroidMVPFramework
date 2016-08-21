@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.ctsig.android.BuildConfig;
-import com.ctsig.android.di.component.ApiComponent;
 import com.ctsig.android.di.component.AppComponent;
 import com.ctsig.android.di.component.DaggerAppComponent;
 import com.ctsig.android.di.module.AppModule;
@@ -26,8 +25,6 @@ public class App extends Application {
 
     private AppComponent appComponent;
 
-    private ApiComponent apiComponent;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,7 +41,6 @@ public class App extends Application {
             Stetho.initializeWithDefaults(this);
         }
         initializeInjector();
-        initializeInjectorApi();
     }
 
     public static App get(Context context) {
@@ -62,19 +58,9 @@ public class App extends Application {
         appComponent.inject(this);
     }
 
-    private void initializeInjectorApi() {
-//        apiComponent = DaggerApiComponent.builder()
-//                .apiModule(new ApiModule())
-//                .appComponent(getAppComponent())
-//                .appModule(new AppModule(this))
-//                .build();
-    }
 
     public AppComponent getAppComponent() {
         return appComponent;
     }
 
-    public ApiComponent getApiComponent() {
-        return apiComponent;
-    }
 }
