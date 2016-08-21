@@ -14,4 +14,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="error_message_network">Network error</string>
+    <string name="error_message_call">Call failed</string>
+    <string name="error_message_map">Map loading failed</string>
 </resources>

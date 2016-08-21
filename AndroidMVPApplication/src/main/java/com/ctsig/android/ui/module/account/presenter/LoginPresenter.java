@@ -12,6 +12,7 @@ import com.ctsig.android.ui.module.account.activity.LoginActivity;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.functions.Action0;
 import rx.functions.Action2;
 import rx.functions.Func0;
 
@@ -25,13 +26,13 @@ import rx.functions.Func0;
 public class LoginPresenter extends BasePresenter<LoginActivity> {
 
     private static final int REQUEST_ID = 1;
-    private LoginActivity mContext;
+    private LoginActivity activity;
 
     @Inject
     AccountApi mAccountApi;
 
-    private String mUsername ;
-    private String mPassword ;
+    private String username;
+    private String password;
 
     public LoginPresenter(){
         LogUtils.d("LoginPresenter()");
@@ -40,7 +41,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     @Override
     protected void onTakeView(LoginActivity activity) {
         super.onTakeView(activity);
-        mContext = activity;
+        this.activity = activity;
     }
 
 //    @Inject
@@ -55,13 +56,24 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
 
             @Override
             public Observable<User> call() {
-                return mAccountApi.login(mUsername,mPassword)
-                        .compose(new SchedulerTransformer<User>());
+                return mAccountApi.login(username, password)
+                        .compose(new SchedulerTransformer<User>())
+                        .doOnSubscribe(new Action0() {
+                            @Override
+                            public void call() {
+                                activity.showLoading();
+                            }
+                        }).doOnTerminate(new Action0() {
+                            @Override
+                            public void call() {
+                                activity.dismissLoading();
+                            }
+                        });
             }
         }, new Action2<LoginActivity, User>() {
             @Override
             public void call(LoginActivity activity, User user) {
-
+                activity.loginSuccess(user);
             }
         }, new Action2<LoginActivity, Throwable>() {
             @Override
@@ -73,8 +85,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     }
 
     public void login(String username, String password) {
-        this.mUsername = username ;
-        this.mPassword = password ;
+        this.username = username ;
+        this.password = password ;
         start(REQUEST_ID);
     }
 }

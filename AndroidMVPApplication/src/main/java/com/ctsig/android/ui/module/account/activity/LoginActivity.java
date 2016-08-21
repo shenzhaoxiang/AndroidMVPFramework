@@ -3,6 +3,7 @@ package com.ctsig.android.ui.module.account.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -12,6 +13,8 @@ import android.widget.ProgressBar;
 
 import com.ctsig.android.R;
 import com.ctsig.android.common.utils.InputMethodUtils;
+import com.ctsig.android.data.model.entity.User;
+import com.ctsig.android.data.pref.AccountPref;
 import com.ctsig.android.di.HasComponent;
 import com.ctsig.android.di.component.AccountComponent;
 import com.ctsig.android.di.component.DaggerAccountComponent;
@@ -19,6 +22,7 @@ import com.ctsig.android.di.module.AccountModule;
 import com.ctsig.android.ui.base.BaseLoadingActivity;
 import com.ctsig.android.ui.module.account.presenter.LoginPresenter;
 import com.ctsig.android.ui.module.account.view.LoginView;
+import com.ctsig.android.ui.module.demo.activity.MainActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -84,10 +88,6 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
         }
     }
 
-    @Override
-    public void loginSuccess() {
-
-    }
 
     @Override
     public String getLoadingMessage() {
@@ -105,6 +105,14 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
                 .activityModule(getActivityModule())
                 .accountModule(new AccountModule())
                 .build();
+    }
+
+
+    @Override
+    public void loginSuccess(User user) {
+        Snackbar.make(loginBtn, "Login Success", Snackbar.LENGTH_LONG).show();
+        AccountPref.saveLogonUser(this, user);
+        readyGoThenKill(MainActivity.class);
     }
 }
 

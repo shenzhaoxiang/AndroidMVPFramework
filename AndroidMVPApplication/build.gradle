@@ -32,7 +32,7 @@ android {
             // 签名的一些信息
             storeFile file("../BuildSystemConfig/ctsig-release.jks")
             storePassword "ctsig2015"
-            keyAlias "ctsig2015"
+            keyAlias "ctsig android应用签名证书"
             keyPassword "ctsig2015"
         }
     }
@@ -82,14 +82,21 @@ android {
             }
         }
     }
-    //支持lint warning 检查机制
+
+
+
+    // 移除lint检查的error
+    // 支持lint warning 检查机制
     lintOptions {
+        abortOnError false
         disable 'InvalidPackage'
     }
 
     //为什么加入这个呢？防止冲突，比如我同时用了dagger-compiler就会报错，说下面这个`Processor`重复了
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
     }
 }
 

@@ -1,5 +1,6 @@
 package com.ctsig.android.ui.module.account.view;
 
+import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.ui.base.LoadView;
 
 /**
@@ -11,5 +12,5 @@ import com.ctsig.android.ui.base.LoadView;
  */
 public interface LoginView extends LoadView {
 
-    void loginSuccess();
+    void loginSuccess(User user);
 }
