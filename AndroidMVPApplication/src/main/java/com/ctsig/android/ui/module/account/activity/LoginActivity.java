@@ -11,23 +11,18 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.ctsig.android.R;
-import com.ctsig.android.app.App;
 import com.ctsig.android.common.utils.InputMethodUtils;
-import com.ctsig.android.di.HasComponent;
-import com.ctsig.android.di.component.AccountComponent;
-import com.ctsig.android.di.component.DaggerAccountComponent;
-import com.ctsig.android.di.module.AccountModule;
-import com.ctsig.android.di.module.ActivityModule;
 import com.ctsig.android.ui.base.BaseLoadingActivity;
 import com.ctsig.android.ui.module.account.presenter.LoginPresenter;
 import com.ctsig.android.ui.module.account.view.LoginView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import nucleus.factory.PresenterFactory;
 import nucleus.factory.RequiresPresenter;
 
 @RequiresPresenter(LoginPresenter.class)
-public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implements LoginView, HasComponent<AccountComponent> {
+public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implements LoginView {
 
 
     @BindView(R.id.login_progress)
@@ -51,7 +46,7 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
 
     @Override
     public void initViewsAndEvents(View view) {
-        getComponent().inject(this);
+
     }
 
     @Override
@@ -61,24 +56,16 @@ public class LoginActivity extends BaseLoadingActivity<LoginPresenter> implement
 
     @Override
     public void injectorPresenter() {
-//        final PresenterFactory<LoginPresenter> superFactory = super.getPresenterFactory();
-//        setPresenterFactory(new PresenterFactory<LoginPresenter>() {
-//            @Override
-//            public LoginPresenter createPresenter() {
-//                LoginPresenter presenter = superFactory.createPresenter();
-//                getComponent().inject(presenter);
-//                return presenter;
-//            }
-//        });
-    }
-
-    @Override
-    public AccountComponent getComponent() {
-        return DaggerAccountComponent.builder()
-                .applicationComponent(App.get(this).getComponent())
-                .activityModule(new ActivityModule(this))
-                .accountModule(new AccountModule())
-                .build();
+        super.injectorPresenter();
+        final PresenterFactory<LoginPresenter> superFactory = super.getPresenterFactory();
+        setPresenterFactory(new PresenterFactory<LoginPresenter>() {
+            @Override
+            public LoginPresenter createPresenter() {
+                LoginPresenter presenter = superFactory.createPresenter();
+                getApiComponent().inject(presenter);
+                return presenter;
+            }
+        });
     }
 
     @OnClick(R.id.login_btn)

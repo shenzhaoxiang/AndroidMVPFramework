@@ -1,6 +1,6 @@
 package com.ctsig.android.data.datasource;
 
-import android.app.Application;
+import android.content.Context;
 
 import com.ctsig.android.common.config.GithubConfig;
 import com.ctsig.android.common.utils.LogUtils;
@@ -35,7 +35,7 @@ public class AccountDataSource implements AccountApi {
     GithubAuthRetrofit mRetrofit;
 
     @Inject
-    Application mContext;
+    Context mContext;
 
     @Inject
     public AccountDataSource() {

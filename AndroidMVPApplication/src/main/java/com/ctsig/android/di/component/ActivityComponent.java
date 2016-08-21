@@ -1,6 +1,7 @@
 package com.ctsig.android.di.component;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.ctsig.android.di.module.ActivityModule;
 import com.ctsig.android.di.scope.PerActivity;
@@ -15,8 +16,13 @@ import dagger.Component;
  * @date: 2016-08-20 19:16
  */
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
+@Component(
+        dependencies = {//AppComponent.class,
+                AppComponent.class},
+        modules = ActivityModule.class)
 public interface ActivityComponent {
 
     Activity activity();
+
+    Context context();
 }

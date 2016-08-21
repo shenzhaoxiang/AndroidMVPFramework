@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.ctsig.android.BuildConfig;
-import com.ctsig.android.di.component.ApplicationComponent;
-import com.ctsig.android.di.component.DaggerApplicationComponent;
-import com.ctsig.android.di.module.ApplicationModule;
+import com.ctsig.android.di.component.ApiComponent;
+import com.ctsig.android.di.component.AppComponent;
+import com.ctsig.android.di.component.DaggerAppComponent;
+import com.ctsig.android.di.module.AppModule;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -23,6 +24,10 @@ import butterknife.ButterKnife;
 public class App extends Application {
     private static RefWatcher refWatcher;
 
+    private AppComponent appComponent;
+
+    private ApiComponent apiComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,27 +43,38 @@ public class App extends Application {
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }
+        initializeInjector();
+        initializeInjectorApi();
     }
 
     public static App get(Context context) {
         return (App) context.getApplicationContext();
     }
 
-    ApplicationComponent appComponent;
-    public ApplicationComponent getComponent() {
-        if (appComponent == null) {
-            appComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(this))
-                    .build();
-        }
-        return appComponent;
-    }
     public static RefWatcher getRefWatcher() {
         return refWatcher;
     }
 
-    // Needed to replace the component with a test specific one
-    public void setComponent(ApplicationComponent appComponent) {
-        this.appComponent = appComponent;
+    private void initializeInjector() {
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+        appComponent.inject(this);
+    }
+
+    private void initializeInjectorApi() {
+//        apiComponent = DaggerApiComponent.builder()
+//                .apiModule(new ApiModule())
+//                .appComponent(getAppComponent())
+//                .appModule(new AppModule(this))
+//                .build();
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
+    }
+
+    public ApiComponent getApiComponent() {
+        return apiComponent;
     }
 }

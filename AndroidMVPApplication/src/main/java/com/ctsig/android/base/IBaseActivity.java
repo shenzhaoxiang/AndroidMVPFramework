@@ -45,5 +45,5 @@ public interface IBaseActivity {
      */
     public Context getContext();
 
-    public void injectorPresenter() ;
+//    public void injectorPresenter() ;
 }

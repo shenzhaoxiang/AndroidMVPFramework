@@ -32,6 +32,7 @@ public class GithubAuthRetrofit  extends BaseRetrofit {
     public GithubAuthRetrofit() {
         LogUtils.d("GithubAuthRetrofit()");
     }
+
     public void setAuthInfo(String username, String password) {
         this.username = username;
         this.password = password;

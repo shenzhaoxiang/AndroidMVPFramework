@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.ctsig.android.di.qualifier.ForActivity;
 import com.ctsig.android.di.scope.PerActivity;
 
 import dagger.Module;
@@ -36,7 +35,7 @@ public class ActivityModule {
     }
 
     @Provides
-    @ForActivity
+    @PerActivity
     Context provideContext() {
         return activity;
     }
