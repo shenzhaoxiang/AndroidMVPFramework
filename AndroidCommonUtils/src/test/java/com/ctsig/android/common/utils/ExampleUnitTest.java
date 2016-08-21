@@ -1,4 +1,4 @@
-package com.ctsig.android.utils;
+package com.ctsig.android.common.utils;
 
 import org.junit.Test;
 

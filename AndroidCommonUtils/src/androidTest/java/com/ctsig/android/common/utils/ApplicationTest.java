@@ -1,4 +1,4 @@
-package com.ctsig.android.utils;
+package com.ctsig.android.common.utils;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
