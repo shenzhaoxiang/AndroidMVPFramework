@@ -1,0 +1,190 @@
+// 代表该项目是Android项目
+apply plugin: 'com.android.application'
+// 注释处理
+apply plugin: 'com.neenbedankt.android-apt'
+android {
+    // 编译SDK版本
+    compileSdkVersion 24
+    // build tools 版本
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        // 应用包名
+        applicationId "com.ctsig.android"
+        // 最小支持的SDk版本
+        minSdkVersion 15
+        // 目标SDK版本
+        targetSdkVersion 24
+        // 版本号 versionCode = x * 10000 + y * 100 + z 的格式命名
+        versionCode 10000
+        // 版本名字 versionName = x.y.z, 且 x.y.z 都为数字
+        // x -> 主版本号，无上限
+        // y -> 小功能版本号，上限 99(可以根据实际情况调整)
+        // z -> 修订版本号（修复BUG），上限 99(可以根据实际情况调整)
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        debug {
+            // No config
+        }
+        release {
+            // 签名的一些信息
+            storeFile file("../BuildSystemConfig/ctsig-release.jks")
+            storePassword "ctsig2015"
+            keyAlias "ctsig android应用签名证书"
+            keyPassword "ctsig2015"
+        }
+    }
+
+    // buildTypes意为编译的类型，下面声明了debug和release两种类型
+    // 两种的签名所用的配置不一样,在signingConfig节点指定
+    // 执行gradlew assembleDehug或者gradlew assembleRelease
+    buildTypes {
+        debug {
+            // 版本名加上后缀 如 1.0-debug
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+            // DEBUG发布使用的变量
+            debuggable true
+            buildConfigField 'boolean', 'TEST', 'true'
+            buildConfigField 'String', 'API_URL', '"http://op.juhe.cn/"'
+            buildConfigField 'String', 'GITHUB_API_URL', '"https://api.github.com/"'
+        }
+
+        release {
+            // 是否开启混淆
+            minifyEnabled true
+            // 是否zip优化
+            zipAlignEnabled true
+            // 删除一些无用的资源
+            shrinkResources true
+            // 签名所用的配置文件
+            signingConfig signingConfigs.release
+            // 混淆所用的文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 正式发布使用的变量
+            debuggable false
+            buildConfigField 'boolean', 'TEST', 'false'
+            buildConfigField 'String', 'CTG_API_URL', '"http://192.168.104.142:8080/web/api/"'
+            buildConfigField 'String', 'GITHUB_API_URL', '"https://api.github.com/"'
+
+            // 使生成的安装包名字变成rootprojectname + versionName + versionCode
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(
+                            output.outputFile.parent,
+                            "$rootProject.name-v${variant.versionName}-build${variant.versionCode}.apk")
+                }
+            }
+        }
+    }
+
+    // 移除lint检查的error
+    // 支持lint warning 检查机制
+    lintOptions {
+        abortOnError false
+        disable 'InvalidPackage'
+    }
+
+    //为什么加入这个呢？防止冲突，比如我同时用了dagger-compiler就会报错，说下面这个`Processor`重复了
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+ext {
+    supportLibVersion = '24.2.0'
+    nucleusVersion = '4.0.0'
+    butterknifeVersion = '8.2.1'
+    retrofit2Version = '2.1.0'
+    okhttp3Version = '3.4.1'
+    leakcanaryVersion = '1.4-beta2'
+    icepickVersion = '3.2.0'
+    daggerVersion = '2.4'
+    stethoVersion = '1.3.1'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile project(':AndroidAppBase')
+
+    compile "com.android.support:support-v4:${supportLibVersion}"
+    compile "com.android.support:appcompat-v7:${supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
+    compile "com.android.support:design:${supportLibVersion}"
+    compile "com.android.support:cardview-v7:${supportLibVersion}"
+
+    // nucleus MVP基础框架  https://github.com/konmik/nucleus
+    //compile "info.android15.nucleus:nucleus:${nucleusVersion}"
+    //compile "info.android15.nucleus:nucleus-support-v4:${nucleusVersion}"
+    //compile "info.android15ndroid15.nucleus:nucleus-support-v7:${nucleusVersion}"
+    // ButterKnife DI  https://github.com/JakeWharton/butterknife
+
+    // 插件 https://github.com/avast/android-butterknife-zelezny
+    compile "com.jakewharton:butterknife:${butterknifeVersion}"
+    apt "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+
+    // retrofit  https://github.com/square/retrofit
+    compile "com.squareup.retrofit2:retrofit:${retrofit2Version}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofit2Version}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
+
+    // okhttp3  https://github.com/square/okhttp
+    compile "com.squareup.okhttp3:okhttp:${okhttp3Version}"
+    compile 'com.squareup.okio:okio:1.9.0'
+    compile "com.squareup.okhttp3:logging-interceptor:${okhttp3Version}"
+
+    // RxJava https://github.com/ReactiveX/RxJava
+    // RxAndroid  https://github.com/ReactiveX/RxAndroid
+    compile 'io.reactivex:rxjava:1.1.9'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    // Rx Life Cycle  https://github.com/trello/RxLifecycle
+    compile 'com.trello:rxlifecycle:0.6.1'
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+    //    compile 'io.vokal.lint:rxlifecycle:1.0.3'
+
+    // 找出内存泄漏  https://github.com/square/leakcanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
+
+    // icepick  https://github.com/frankiesardo/icepick
+    compile "frankiesardo:icepick:${icepickVersion}"
+    apt "frankiesardo:icepick-processor:${icepickVersion}"
+
+    //dagger2  https://github.com/google/dagger
+    compile "com.google.dagger:dagger:${daggerVersion}"
+    apt "com.google.dagger:dagger-compiler:${daggerVersion}"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    // annotation, 提供java注释解析的功能
+    // provided 'javax.annotation:jsr250-api:1.0'
+
+    // Once you complete the set-up instructions below, just start your app
+    // and point your laptop browser to chrome://inspect.
+    // Click the "Inspect" button to begin.
+    // https://github.com/facebook/stetho
+    compile "com.facebook.stetho:stetho:${stethoVersion}"
+    compile "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+
+    // glide  https://github.com/bumptech/glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+    // Gson
+    compile 'com.google.code.gson:gson:2.5'
+
+    // logger  https://github.com/orhanobut/logger
+    compile 'com.orhanobut:logger:1.15'
+
+    // loading https://github.com/d-max/spots-dialog
+    compile 'com.github.d-max:spots-dialog:0.4@aar'
+}

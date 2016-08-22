@@ -1,1 +1,1 @@
-include ':AndroidMVPApplication', ':AndroidCommonUtils', ':AndroidMVPBase'
+include ':AndroidAppUseNucleus', ':AndroidCommonUtils', ':AndroidAppBase', ':AndroidAppUseMVP'
