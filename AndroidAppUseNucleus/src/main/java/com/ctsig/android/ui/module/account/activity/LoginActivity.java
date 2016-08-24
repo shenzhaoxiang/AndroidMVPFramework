@@ -12,13 +12,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.ctsig.android.R;
-import com.ctsig.android.common.utils.InputMethodUtils;
+import com.ctsig.android.utils.InputMethodUtils;
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.pref.AccountPref;
-import com.ctsig.android.di.HasComponent;
-import com.ctsig.android.di.component.AccountComponent;
-import com.ctsig.android.di.component.DaggerAccountComponent;
-import com.ctsig.android.di.module.AccountModule;
+import com.ctsig.android.injector.HasComponent;
+import com.ctsig.android.injector.component.AccountComponent;
+import com.ctsig.android.injector.component.DaggerAccountComponent;
+import com.ctsig.android.injector.module.AccountModule;
 import com.ctsig.android.ui.base.BaseLoadingActivity;
 import com.ctsig.android.ui.module.account.presenter.LoginPresenter;
 import com.ctsig.android.ui.module.account.view.LoginView;

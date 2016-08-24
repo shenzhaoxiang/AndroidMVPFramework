@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.Window;
 
 import com.ctsig.android.app.App;
-import com.ctsig.android.di.component.AppComponent;
-import com.ctsig.android.di.module.ActivityModule;
+import com.ctsig.android.injector.component.AppComponent;
+import com.ctsig.android.injector.module.ActivityModule;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;

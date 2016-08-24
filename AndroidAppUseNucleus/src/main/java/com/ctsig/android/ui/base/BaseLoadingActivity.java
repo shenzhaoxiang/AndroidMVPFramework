@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 
 import com.ctsig.android.base.BaseActivity;
-import com.ctsig.android.ui.widget.loading.LoadingView;
+import com.ctsig.android.widget.loading.LoadingView;
 
 import nucleus.presenter.Presenter;
 

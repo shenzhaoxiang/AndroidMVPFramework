@@ -4,9 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.ctsig.android.BuildConfig;
-import com.ctsig.android.di.component.AppComponent;
-import com.ctsig.android.di.component.DaggerAppComponent;
-import com.ctsig.android.di.module.AppModule;
+import com.ctsig.android.injector.component.AppComponent;
+import com.ctsig.android.injector.component.DaggerAppComponent;
+import com.ctsig.android.injector.module.AppModule;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;

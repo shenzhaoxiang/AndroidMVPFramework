@@ -3,7 +3,7 @@ package com.ctsig.android.ui.module.account.presenter;
 import android.os.Bundle;
 
 import com.ctsig.android.base.BasePresenter;
-import com.ctsig.android.common.utils.LogUtils;
+import com.ctsig.android.utils.LogUtils;
 import com.ctsig.android.data.api.AccountApi;
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.transformer.SchedulerTransformer;

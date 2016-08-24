@@ -3,7 +3,7 @@ package com.ctsig.android.data.datasource;
 import android.content.Context;
 
 import com.ctsig.android.common.config.GithubConfig;
-import com.ctsig.android.common.utils.LogUtils;
+import com.ctsig.android.utils.LogUtils;
 import com.ctsig.android.data.api.AccountApi;
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.net.client.GithubAuthRetrofit;

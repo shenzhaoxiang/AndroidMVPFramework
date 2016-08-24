@@ -1,8 +1,8 @@
-package com.ctsig.android.data.net.client;
+package com.ctsig.android.api.base;
 
 import android.app.Application;
 
-import com.ctsig.android.data.net.client.core.BaseOkHttpClient;
+import com.ctsig.android.api.Api;
 import com.ctsig.android.utils.NetworkUtils;
 
 import java.io.File;
@@ -24,8 +24,8 @@ import okhttp3.Response;
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-20 18:06
  */
-public class CacheHttpClient extends BaseOkHttpClient {
-    private static final long CACHE_SIZE = 1024 * 1024 * 50;
+public class CacheHttpClient extends BaseOkHttpClient{
+    private static final long CACHE_SIZE = Api.CACHE_SIZE;
 
     @Inject
     Application mContext;
