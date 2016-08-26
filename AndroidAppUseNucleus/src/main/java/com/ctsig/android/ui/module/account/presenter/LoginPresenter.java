@@ -52,7 +52,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        restartableFirst(REQUEST_ID, new Func0<Observable<User>>() {
+        this.restartableFirst(REQUEST_ID, new Func0<Observable<User>>() {
 
             @Override
             public Observable<User> call() {
@@ -88,5 +88,11 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         this.username = username ;
         this.password = password ;
         start(REQUEST_ID);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stop(REQUEST_ID);
     }
 }

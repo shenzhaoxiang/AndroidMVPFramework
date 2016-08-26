@@ -1,4 +1,4 @@
-package com.ctsig.android.api.github;
+package com.ctsig.android.api.osc;
 
 import com.ctsig.android.api.Api;
 import com.ctsig.android.data.net.client.core.ApiEndpoint;
@@ -15,12 +15,12 @@ import okhttp3.OkHttpClient;
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-24 17:18
  */
-public class GitHubRetrofit extends BaseRetrofit {
+public class OSCRetrofit extends BaseRetrofit {
 
-    GithubHttpClient mHttpClient;
+    OSCHttpClient mHttpClient;
 
     @Inject
-    public GitHubRetrofit(GithubHttpClient mHttpClient) {
+    public OSCRetrofit(OSCHttpClient mHttpClient) {
         this.mHttpClient = mHttpClient;
     }
 

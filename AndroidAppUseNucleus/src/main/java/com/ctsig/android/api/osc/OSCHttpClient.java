@@ -1,4 +1,4 @@
-package com.ctsig.android.api.github;
+package com.ctsig.android.api.osc;
 
 import android.app.Application;
 
@@ -21,13 +21,13 @@ import okhttp3.Response;
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-24 18:13
  */
-public class GithubHttpClient extends CacheHttpClient{
+public class OSCHttpClient extends CacheHttpClient{
 
     @Inject
     public Application application;
 
     @Inject
-    public GithubHttpClient() {
+    public OSCHttpClient() {
     }
 
     public String getAcceptHeader() {

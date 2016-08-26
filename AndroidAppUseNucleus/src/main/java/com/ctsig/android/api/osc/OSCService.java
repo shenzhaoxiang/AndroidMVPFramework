@@ -1,4 +1,4 @@
-package com.ctsig.android.api.github;
+package com.ctsig.android.api.osc;
 
 import com.ctsig.android.data.model.entity.User;
 import com.ctsig.android.data.net.request.CreateAuthorization;
@@ -17,11 +17,11 @@ import rx.Observable;
  * @email shenzhaoxiang@gmail.com
  * @date: 2016-08-24 17:29
  */
-public interface GitHubService {
-    @POST("/authorizations")
-    Observable<AuthorizationResp> createAuthorization(
-            @Body CreateAuthorization createAuthorization);
-
-    @GET("/user")
-    Observable<User> getUserInfo(@Query("access_token") String accessToken);
+public interface OSCService {
+    @POST("/action/api/login_validate")
+    Observable<RespUser> login(
+            @Query("username") String username,
+            @Query("pwd") String password,
+            @Query("keep_login") int keepLogin
+    );
 }
