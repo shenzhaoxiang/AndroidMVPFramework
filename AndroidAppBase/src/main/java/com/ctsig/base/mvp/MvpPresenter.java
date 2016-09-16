@@ -1,4 +1,4 @@
-package com.ctsig.base.custom;
+package com.ctsig.base.mvp;
 
 import android.support.annotation.UiThread;
 

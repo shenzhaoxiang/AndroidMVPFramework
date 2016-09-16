@@ -1,4 +1,4 @@
-package com.ctsig.base.custom;
+package com.ctsig.base.mvp;
 
 /**
  * Created by mingjun on 16/7/5.

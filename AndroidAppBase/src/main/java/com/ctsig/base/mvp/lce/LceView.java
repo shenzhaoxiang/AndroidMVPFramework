@@ -1,8 +1,8 @@
-package com.ctsig.base.custom.lce;
+package com.ctsig.base.mvp.lce;
 
 import android.support.annotation.UiThread;
 
-import com.ctsig.base.custom.MvpView;
+import com.ctsig.base.mvp.MvpView;
 
 
 /**
