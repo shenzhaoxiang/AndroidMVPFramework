@@ -3,10 +3,10 @@ package com.ctsig.android.api;
 import com.ctsig.android.BuildConfig;
 
 /**
- * @version V1.0
- * @des
+ * @version: V1.0
+ * @des:
  * @author: shen
- * @email shenzhaoxiang@gmail.com
+ * @email: shenzhaoxiang@gmail.com
  * @date: 2016-08-22 11:43
  */
 public interface Api {

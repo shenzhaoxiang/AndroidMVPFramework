@@ -11,10 +11,10 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 /**
- * @version V1.0
- * @des
+ * @version: V1.0
+ * @des:
  * @author: shen
- * @email shenzhaoxiang@gmail.com
+ * @email: shenzhaoxiang@gmail.com
  * @date: 2016-08-24 17:29
  */
 public interface GitHubService {
