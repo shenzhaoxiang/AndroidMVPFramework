@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Android template
 # Built application files
 *.apk
 *.ap_
@@ -17,9 +19,6 @@ out/
 .gradle/
 build/
 
-.idea/
-.DS_Store
-
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -37,32 +36,9 @@ captures/
 
 # Intellij
 *.iml
+.idea
 .idea/workspace.xml
 
 # Keystore files
 *.jks
-AndroidAppBase/libs/
-AndroidAppBase/src/main/java/com/ctsig/base/nucleus/
-AndroidAppBase/src/main/res/drawable/
-AndroidAppUseMVP/libs/
-AndroidAppUseMVP/src/main/java/com/ctsig/android/data/
-AndroidAppUseMVP/src/main/java/com/ctsig/android/injector/component/
-AndroidAppUseMVP/src/main/java/com/ctsig/android/injector/module/
-AndroidAppUseMVP/src/main/java/com/ctsig/android/widget/dialog/
-AndroidAppUseMVP/src/main/res/drawable/
-AndroidAppUseNucleus/libs/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/account/adapter/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/account/fragment/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/demo/adapter/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/demo/fragment/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/demo/presenter/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/module/demo/view/
-AndroidAppUseNucleus/src/main/java/com/ctsig/android/ui/widget/dialog/
-AndroidAppUseNucleus/src/main/res/drawable/
-AndroidCommonUtils/libs/
-AndroidCommonUtils/src/main/java/
-AndroidCommonUtils/src/main/res/drawable/
-AndroidThirdPart/
-BuildSystemConfig/apk/
-BuildSystemConfig/password.txt
-gradle/
+

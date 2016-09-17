@@ -4,7 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by mingjun on 16/7/27.
+ * @version： V1.0.0
+ * @des：
+ * @author: mingjun
+ * @email: shenzhaoxiang@gmail.com
+ * @date: 16/7/27
  */
 public class AuthorizationResp implements Parcelable {
 
